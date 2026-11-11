@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: bright-smile-cn
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: bright-db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+    volumes:
+      - bright-smile-data:/var/lib/postgresql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+volumes:
+  bright-smile-data:
